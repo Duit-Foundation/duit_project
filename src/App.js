@@ -38,62 +38,8 @@ const themes = {
 };
 
 export default function App() {
-  const { theme, setTheme } = useAppContext();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const dispatch = useDispatch();
 
-  React.useEffect(
-    function () {
-      const updateTheme = () =>
-        darkMode ? setTheme("dark") : setTheme("light");
-      updateTheme();
-      dispatch(fetchGitHubInfo());
-      dispatch(fetchGitHubReops());
-    },
-    [setTheme, dispatch]
-  );
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) =>
-      e.matches ? setTheme("dark") : setTheme("light")
-    );
-
-  if (isLoading) {
-    return (
-      <ThemeProvider theme={themes[theme]}>
-        <GlobalStyles />
-        <Container className="d-flex vh-100 align-items-center">
-          <Loading />
-        </Container>
-      </ThemeProvider>
-    );
-  } else if (error) {
-    return (
-      <ThemeProvider theme={themes[theme]}>
-        <GlobalStyles />
-        <Container className="d-flex vh-100 align-items-center justify-content-center">
-          <h2>{error}</h2>
-        </Container>
-      </ThemeProvider>
-    );
-  } else {
-    return (
-      <HashRouter>
-        <ThemeProvider theme={themes[theme]}>
-          <ScrollToTop />
-          <GlobalStyles />
-          <Element name={"Home"} id="home">
-            <NavBar Logo={navLogo} />
-          </Element>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/All-Projects" element={<AllProjects />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </ThemeProvider>
-      </HashRouter>
-    );
-  }
+  return (
+    <span>TEST GITHUB PAGE DEPLOYMENT</span>
+  )
 }
